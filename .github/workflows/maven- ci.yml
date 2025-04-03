@@ -55,6 +55,10 @@ jobs:
 
     steps:
 
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # This invok
     # https://github.com/marketplace/actions/maven-dependency-tree-dependency-submission
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@v3

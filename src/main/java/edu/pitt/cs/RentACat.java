@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 public interface RentACat {
 	public static RentACat createInstance(InstanceType type) {
-		switch (type) {
+		switch (type){
 			case IMPL:
 				return new RentACatImpl();
 			case BUGGY:
@@ -13,16 +13,12 @@ public interface RentACat {
 			case SOLUTION:
 				return new RentACatSolution();
 			case MOCK:
-				// TODO: Return a mock object that emulates the behavior of a real object.
-				return null;
+				return Mockito.mock(RentACat.class);
 			default:
 				assert (false);
 				return null;
 		}
 	}
-
-	// WARNING: You are not allowed to change any part of the interface.
-	// That means you cannot add any method nor modify any of these methods.
 
 	public boolean returnCat(int id);
 
