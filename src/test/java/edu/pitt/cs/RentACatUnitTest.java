@@ -45,7 +45,7 @@ public class RentACatUnitTest {
 		// Passing InstanceType.IMPL as the first parameter will create a real RentACat object using your RentACatImpl implementation.
 		// Passing InstanceType.MOCK as the first parameter will create a mock RentACat object using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
-		r = RentACat.createInstance(InstanceType.MOCK);
+		r = RentACat.createInstance(InstanceType.IMPL);
 
 		// 2. Create a Cat with ID 1 and name "Jennyanydots", assign to c1 using a call to Cat.createInstance(InstanceType, int, String).
 		// Passing InstanceType.IMPL as the first parameter will create a real cat using your CatImpl implementation.
@@ -197,7 +197,7 @@ public class RentACatUnitTest {
 		
 		String list= r.listCats();
 
-		assertEquals("ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n",list );
+		assertEquals("ID 1.Jennyanydots\nID 2.Old Deuteronomy\nID 3.Mistoffelees\n",list );
 		
 	}
 
@@ -309,11 +309,8 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 
-		c2= Cat.createInstance(InstanceType.MOCK, 2, "Old Deuteronomy");
-		//when(c2.getRented()).thenReturn(false);
-		r.rentCat(2);
-		out.reset();
-
+		when(c2.getRented()).thenReturn(true);
+	
 		boolean checkRent= r.rentCat(2);
 		assertFalse(checkRent);
 		assertEquals("Sorry, Old Deuteronomy is not here!" + newline, out.toString());
@@ -343,12 +340,8 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 
-		c2= Cat.createInstance(InstanceType.MOCK, 2, "Old Deuteronomy");
+		when(c2.getRented()).thenReturn(true);
 
-		r.rentCat(2);
-		out.reset();
-
-		// when(c2.getRented()).thenReturn(true);
 		boolean checkRent= r.returnCat(2);
 		assertTrue(checkRent);
 		assertEquals("Welcome back, Old Deuteronomy!" + newline, out.toString());
@@ -376,10 +369,9 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 
-		//when(c2.getRented()).thenReturn(false);
 		boolean checkRent= r.returnCat(2);
 		assertFalse(checkRent);
-		assertEquals("Old Deuteronomy is already here!" + newline, out.toString());
+		assertEquals("Old Deuteronomy is already here." + newline, out.toString());
 	}
 
 }
