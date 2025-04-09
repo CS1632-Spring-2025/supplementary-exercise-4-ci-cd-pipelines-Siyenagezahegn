@@ -18,6 +18,7 @@ public class CatImpl implements Cat {
 		isRented= true;
 	}
 
+	
 	public void returnCat() {
 	
 		isRented= false;

@@ -30,6 +30,7 @@ public class RentACatImpl implements RentACat {
 		return false;
 	}
 
+	
 	/**
 	 * Rent a cat. This should call the .rentCat() method on the cat for the
 	 * passed-in cat id. If the cat with the id exists in the list of cats and has

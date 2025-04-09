@@ -20,6 +20,7 @@ public interface RentACat {
 		}
 	}
 
+	
 	public boolean returnCat(int id);
 
 	public boolean rentCat(int id);

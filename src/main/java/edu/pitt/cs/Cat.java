@@ -13,7 +13,6 @@ public interface Cat {
 			case SOLUTION:
 				return new CatSolution(id, name);
 			case MOCK:
-
 				Cat c= Mockito.mock(Cat.class);
 				Mockito.when(c.getId()).thenReturn(id);
 				Mockito.when(c.getName()).thenReturn(name);
