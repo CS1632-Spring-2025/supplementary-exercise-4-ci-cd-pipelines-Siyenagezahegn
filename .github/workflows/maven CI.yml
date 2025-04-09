@@ -13,7 +13,7 @@ jobs:
   
   # Runs the Maven test phase on the project
   maven_test:
-
+    
     runs-on: ubuntu-latest
 
     permissions:
@@ -52,7 +52,9 @@ jobs:
 
   # Uploads dependency graph to GitHub to receive Dependabot alerts 
   update_dependence_graph:
-
+  
+    needs: [maven_test]  # Enforces that maven_test runs first
+    
     runs-on: ubuntu-latest
 
     permissions:
@@ -64,8 +66,3 @@ jobs:
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@v3
 
-    - name: Cache build
-      uses: actions/cache@v3
-      with:
-        key: cached-build-${{github.sha}}
-        path: .
