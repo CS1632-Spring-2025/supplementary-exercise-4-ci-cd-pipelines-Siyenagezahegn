@@ -21,12 +21,6 @@ jobs:
       contents: read
 
     steps:
-
-    - name: Restore cached build
-      uses: actions/cache@v3
-      with:
-        key: cached-build-${{github.sha}}
-        path: .
         
     # The uses: keyword invokes a GitHub action:
     # https://github.com/marketplace/actions/checkout
@@ -68,5 +62,9 @@ jobs:
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@v3
       
-
+    - name: Cache build
+      uses: actions/cache@v3
+      with:
+        key: cached-build-${{github.sha}}
+        path: .
   
